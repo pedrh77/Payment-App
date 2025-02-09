@@ -1,4 +1,6 @@
+using Payment_APP.Configuration;
 using Payment_APP.UseCases.User;
+using Payment_INFRA;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,11 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services
-            .AddMediatR(cfg =>
-            {
-                cfg.RegisterServicesFromAssemblies(typeof(RegisterUserQueryHandler).Assembly);
-            });
+builder.Services.ConfigureApplicatipon(builder.Configuration);
+builder.Services.ConfigureInfra(builder.Configuration);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

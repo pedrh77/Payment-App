@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0 # Use a imagem oficial do MySQL (mais simples e amplamente suportada)
+    container_name: my-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: mysqlDB
+      MYSQL_ROOT_PASSWORD: 'StrongRootPassword123!' # Evite caracteres como v�rgulas e aspas duplas
+    ports:
+      - '3306:3306'
+    volumes:
+      - mysql-data:/var/lib/mysql # Persist�ncia do banco de dados
+
+volumes:
+  mysql-data:
+    driver: local
